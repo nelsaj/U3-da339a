@@ -1,9 +1,8 @@
 package controller;
 
-//only imports what is strictly necessary from view-package
+import view.ButtonType;
 import view.CustomCakeFrame;
 import view.MainFrame;
-import view.ButtonType;
 
 public class Controller {
     private MainFrame view;
@@ -23,8 +22,9 @@ public class Controller {
         view.enableAllButtons();
         view.disableAddMenuButton();
         view.disableViewSelectedOrderButton();
-    }
 
+    }
+    
     //This method is only used for test purposes - remove when no longer needed
     private void loadStringTestValues() {
         cakeMenuString = new String[10];
@@ -51,6 +51,7 @@ public class Controller {
 
     }
 
+    
     //This method is called by class MinFrame when a button in teh GUI is pressed
     public void buttonPressed(ButtonType button){
 
@@ -84,7 +85,7 @@ public class Controller {
                 break;
         }
     }
-
+    
     public void addItemToOrder(int selectionIndex) {
         System.out.println("Index selection left panel: " + selectionIndex); //for test purposes  - remove when not needed
 
