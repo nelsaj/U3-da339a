@@ -1,21 +1,21 @@
 package model;
 
 public class Cake extends Product{
-    private Filling filling;
+    private Filling[] fillings;
     private int size;
 
     // default values
     //TODO: felhantering för värden i setters
     public Cake(){
         super(); 
-        this.setFilling(Filling.Unknown);
+        this.setFillings(new Filling[2]);
         this.setSize(this.size);
     }
 
     //TODO: felhantering för värden i setters
-    public Cake(Filling filling, int size, String name){
+    public Cake(Filling[] fillings, int size, String name){
        super.setName(name);
-       this.setFilling(filling);
+       this.setFillings(fillings);
        this.setSize(size);
     }
 
@@ -23,12 +23,12 @@ public class Cake extends Product{
         return size;
     }
 
-    public Filling getFilling() {
-        return filling;
+    public Filling[] getFillings() {
+        return fillings;
     }
 
-    public void setFilling(Filling filling) {
-        this.filling = filling;
+    public void setFillings(Filling[] fillings) {
+        this.fillings = fillings;
     }
 
     public void setSize(int size) {
@@ -37,7 +37,7 @@ public class Cake extends Product{
 
     @Override
     public String toString(){
-        return super.toString() + this.size + this.filling; 
+        return super.toString() + this.size + this.fillings; 
     }
 
     @Override  //TODO: fixa denna 
