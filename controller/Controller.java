@@ -32,8 +32,9 @@ public class Controller {
     public Controller() {
         view = new MainFrame(1000, 500, this);
         currentOrder = new Order();
-        
         loadInitialCakes();
+        loadInitialPerUnitItems();
+
         loadStringTestValues(); //for test purposes - remove when not needed more
         view.enableAllButtons();
         view.disableAddMenuButton();
@@ -74,6 +75,12 @@ public class Controller {
         cakes[1] = new Cake(new Filling[]{Filling.Strawberry, Filling.MixedBerries}, 2, "Berry good");
         cakes[2] = new Cake(new Filling[]{Filling.Unknown, Filling.Unknown}, 3, "DONT TRY THIS PLEASE HELP");
         
+    }
+    private void loadInitialPerUnitItems() {
+        this.perUnitItems = new PerUnitItem[2];
+
+        perUnitItems[0] = new PerUnitItem(20, "Kanelbulle");
+        perUnitItems[1] = new PerUnitItem(10, "Chokladboll");
     }
     
     
@@ -152,14 +159,7 @@ public class Controller {
         view.populateLeftPanel(cakeMenuString);
         System.out.println(Arrays.toString(currentOrderArray));
         
-        String[] orderPurchasesStrings = new String[currentOrder.getPurchases().length];
-        for (int i = 0; i < currentOrder.getPurchases().length; i++) {
-            orderPurchasesStrings[i] = currentOrder.getPurchases()[i].toString();;    
-        }
-
-        view.populateRightPanel(orderPurchasesStrings); //update left panel with new item - this takes a shortcut in updating the entire information in the panel not just adds to the end
-        view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(currentOrder.getTotalPrice())); //set the text to show cost of current order
-        
+        setCurrentOrderRightPanel();
 
         view.enableAllButtons();
         view.disableCakeMenuButton();
@@ -169,12 +169,25 @@ public class Controller {
 
     public void setToPerUnitItemMenu() {
         currentLeftMenu = ButtonType.PerUnitItem;
+        String[] perUnitItemMenuString = new String[perUnitItems.length];
+        for (int i = 0; i < perUnitItems.length; i++) {
+            perUnitItemMenuString[i] = perUnitItems[i].toString();    
+        }
         view.populateLeftPanel(perUnitItemMenuString);
-        view.populateRightPanel(currentOrderArray); //update left panel with new item - this takes a shortcut in updating the entire information in the panel not just adds to the end
-        view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(costCurrentOrder)); //set the text to show cost of current order
+
+        setCurrentOrderRightPanel();
         view.enableAllButtons();
         view.disablePerUnitItemMenuButton();
         view.disableViewSelectedOrderButton();
+    }
+
+    private void setCurrentOrderRightPanel () {
+        String[] orderPurchasesStrings = new String[currentOrder.getPurchases().length];
+        for (int i = 0; i < currentOrder.getPurchases().length; i++) {
+            orderPurchasesStrings[i] = currentOrder.getPurchases()[i].toString();
+        }
+        view.populateRightPanel(orderPurchasesStrings); //update left panel with new item - this takes a shortcut in updating the entire information in the panel not just adds to the end
+        view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(currentOrder.getTotalPrice())); //set the text to show cost of current order
     }
 
     public void setToOrderHistoryMenu() {
