@@ -37,7 +37,12 @@ public class Cake extends Product{
 
     @Override
     public String toString(){
-        return super.toString() + this.size + this.fillings; 
+        String cakeText = super.toString() + " Size: " + this.size + " Fillings: "; 
+        for (int i = 0; i < fillings.length; i++) {
+            cakeText += fillings[i] + ", ";    
+        } 
+
+        return cakeText;
     }
 
     @Override  //TODO: fixa denna 

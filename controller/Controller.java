@@ -4,10 +4,23 @@ import view.ButtonType;
 import view.CustomCakeFrame;
 import view.MainFrame;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+import model.*;
+
 public class Controller {
     private MainFrame view;
     private CustomCakeFrame newCakeType;
     private ButtonType currentLeftMenu = ButtonType.NoChoice;
+    private Cake[] cakes;
+    private Order[] previousOrders;
+    private int totalPrice;
+    private Order currentOrder;
+    private PerUnitItem[] perUnitItems;
+
+
+
     private String [] cakeMenuString; // for test purposes only
     private String [] perUnitItemMenuString; // for test purposes only
     private String [] orderHistoryMenuString; // for test purposes only
@@ -18,11 +31,13 @@ public class Controller {
 
     public Controller() {
         view = new MainFrame(1000, 500, this);
+        currentOrder = new Order();
+        
+        loadInitialCakes();
         loadStringTestValues(); //for test purposes - remove when not needed more
         view.enableAllButtons();
         view.disableAddMenuButton();
         view.disableViewSelectedOrderButton();
-
     }
     
     //This method is only used for test purposes - remove when no longer needed
@@ -33,10 +48,10 @@ public class Controller {
         order1Simulation = new String[10];
         currentOrderArray = new String[10];
 
-        cakeMenuString[0] = "tårta0, storlek: 4 bitar, topping1, topping2, Pris0";
-        cakeMenuString[1] = "tårta1, storlek: 6 bitar, topping1, topping3, Pris1";
-        cakeMenuString[2] = "tårta2, storlek: 4 bitar, topping1, topping2, Pris2";
-        cakeMenuString[3] = "tårta3, storlek: 12 bitar,topping1, topping3, Pris3";
+        // cakeMenuString[0] = "tårta0, storlek: 4 bitar, topping1, topping2, Pris0";
+        // cakeMenuString[1] = "tårta1, storlek: 6 bitar, topping1, topping3, Pris1";
+        // cakeMenuString[2] = "tårta2, storlek: 4 bitar, topping1, topping2, Pris2";
+        // cakeMenuString[3] = "tårta3, storlek: 12 bitar,topping1, topping3, Pris3";
 
         perUnitItemMenuString[0] = "vetebulle, Pris11";
         perUnitItemMenuString[1] = "pepparkaka, Pris22";
@@ -51,6 +66,16 @@ public class Controller {
 
     }
 
+
+    private void loadInitialCakes(){
+        this.cakes = new Cake[3];
+        
+        cakes[0] = new Cake(new Filling[]{Filling.Choclate, Filling.Coconut}, 1, "CocoLoco");
+        cakes[1] = new Cake(new Filling[]{Filling.Strawberry, Filling.MixedBerries}, 2, "Berry good");
+        cakes[2] = new Cake(new Filling[]{Filling.Unknown, Filling.Unknown}, 3, "DONT TRY THIS PLEASE HELP");
+        
+    }
+    
     
     //This method is called by class MinFrame when a button in teh GUI is pressed
     public void buttonPressed(ButtonType button){
@@ -119,9 +144,23 @@ public class Controller {
 
     public void setToCakeMenu() {
         currentLeftMenu = ButtonType.Cake;
+        String[] cakeMenuString = new String[cakes.length];
+        
+        for (int i = 0; i < cakes.length; i++) {
+            cakeMenuString[i] = cakes[i].toString();    
+        }
         view.populateLeftPanel(cakeMenuString);
-        view.populateRightPanel(currentOrderArray); //update left panel with new item - this takes a shortcut in updating the entire information in the panel not just adds to the end
-        view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(costCurrentOrder)); //set the text to show cost of current order
+        System.out.println(Arrays.toString(currentOrderArray));
+        
+        String[] orderPurchasesStrings = new String[currentOrder.getPurchases().length];
+        for (int i = 0; i < currentOrder.getPurchases().length; i++) {
+            orderPurchasesStrings[i] = currentOrder.getPurchases()[i].toString();;    
+        }
+
+        view.populateRightPanel(orderPurchasesStrings); //update left panel with new item - this takes a shortcut in updating the entire information in the panel not just adds to the end
+        view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(currentOrder.getTotalPrice())); //set the text to show cost of current order
+        
+
         view.enableAllButtons();
         view.disableCakeMenuButton();
         view.disableViewSelectedOrderButton();
