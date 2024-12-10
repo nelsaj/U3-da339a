@@ -41,8 +41,14 @@ public class Order {
     }
 
     public void addProduct(Product product){
-
+        Product[] newPurchasesArr = new Product[purchases.length + 1];
+        for (int i = 0; i < purchases.length; i++) {
+            newPurchasesArr[i] = purchases[i];
+        }
+        newPurchasesArr[purchases.length] = product;
+        purchases = newPurchasesArr;
     }
+
     //TODO: kolla om denna behövs och om den är bra implementera
     public String toString(){
         return "";
