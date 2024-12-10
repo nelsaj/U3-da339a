@@ -2,6 +2,7 @@ package model;
 
 public abstract class Product {
     private String name; 
+    private int price;
     
     public Product(){
         this.setName(this.name);
@@ -20,9 +21,15 @@ public abstract class Product {
     }
     
     public String toString(){
-        return name;
+        return name + ", Price: " + price;
     }
     
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    public int getPrice() {
+        return price;
+    }
     abstract int calculatePrice();
 
 

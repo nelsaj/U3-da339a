@@ -32,6 +32,7 @@ public class Controller {
     public Controller() {
         view = new MainFrame(1000, 500, this);
         currentOrder = new Order();
+        previousOrders = new Order[0];
         loadInitialCakes();
         loadInitialPerUnitItems();
 
@@ -54,16 +55,16 @@ public class Controller {
         // cakeMenuString[2] = "tårta2, storlek: 4 bitar, topping1, topping2, Pris2";
         // cakeMenuString[3] = "tårta3, storlek: 12 bitar,topping1, topping3, Pris3";
 
-        perUnitItemMenuString[0] = "vetebulle, Pris11";
-        perUnitItemMenuString[1] = "pepparkaka, Pris22";
+        // perUnitItemMenuString[0] = "vetebulle, Pris11";
+        // perUnitItemMenuString[1] = "pepparkaka, Pris22";
 
-        orderHistoryMenuString[0] = "order1: kostnad:100";
-        orderHistoryMenuString[1] = "order2: kostand:200";
+        // orderHistoryMenuString[0] = "order1: kostnad:100";
+        // orderHistoryMenuString[1] = "order2: kostand:200";
 
-        order1Simulation[0] = "Order 1";
-        order1Simulation[1] = "tårta1 Pris1";
-        order1Simulation[2] = "tårta2 Pris2";
-        order1Simulation[3] = "vetebulle Pris11";
+        // order1Simulation[0] = "Order 1";
+        // order1Simulation[1] = "tårta1 Pris1";
+        // order1Simulation[2] = "tårta2 Pris2";
+        // order1Simulation[3] = "vetebulle Pris11";
 
     }
 
@@ -127,13 +128,12 @@ public class Controller {
                     currentOrder.addProduct(cakes[selectionIndex]);
                     break;
                 case PerUnitItem:
-                    currentOrderArray[nbrOfOrders] = perUnitItemMenuString[selectionIndex]; //see comment for case above
+                    currentOrder.addProduct(perUnitItems[selectionIndex]);
                     break;
             }
-            nbrOfOrders++; //for test purposes - need to be removed or changed when model for handling orders is implemented
-            costCurrentOrder = costCurrentOrder + 100; //for test purposes - replace with calculation of cost when how orders are handled is implemented in model
-            view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(costCurrentOrder)); //set the text to show cost of current order
+            nbrOfOrders++; //for test purposes - need to be removed or changed when model for handling orders is implemented            
             
+            setCurrentOrderRightPanel();            
         }
 
     }
@@ -193,6 +193,11 @@ public class Controller {
     public void setToOrderHistoryMenu() {
         currentLeftMenu = ButtonType.OrderHistory;
         view.clearRightPanel();
+        String[] orderHistoryMenuString = new String[previousOrders.length];
+        for (int i = 0; i < previousOrders.length; i++) {
+            orderHistoryMenuString[i] = previousOrders[i].toString();
+        }
+
         view.populateLeftPanel(orderHistoryMenuString);
         view.enableAllButtons();
         view.disableAddMenuButton();
@@ -207,9 +212,13 @@ public class Controller {
     }
 
     public void placeOrder() {
-        System.out.println("Pressed Order to create a new order"); //for test purposes - remove when not needed more
-        currentOrderArray = new String[10];  // for test purposes - remove when not needed more
-        costCurrentOrder = 0;
+        Order[] newPreviousOrders = new Order[previousOrders.length + 1];
+        for (int i = 0; i < previousOrders.length; i++) {
+            newPreviousOrders[i] = previousOrders[i];
+        } 
+        newPreviousOrders[previousOrders.length] = currentOrder;
+        previousOrders = newPreviousOrders;
+        currentOrder = new Order();
         view.clearRightPanel(); //Removes information from right panel in GUI
         view.setTextCostLabelRightPanel("TOTAL COST: 0");
         view.enableAllButtons();

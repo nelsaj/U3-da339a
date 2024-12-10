@@ -3,6 +3,7 @@ package model;
 public class Cake extends Product{
     private Filling[] fillings;
     private int size;
+    
 
     // default values
     //TODO: felhantering för värden i setters
@@ -17,6 +18,7 @@ public class Cake extends Product{
        super.setName(name);
        this.setFillings(fillings);
        this.setSize(size);
+       this.setPrice(calculatePrice());
     }
 
     public int getSize() {
@@ -45,8 +47,14 @@ public class Cake extends Product{
         return cakeText;
     }
 
-    @Override  //TODO: fixa denna 
+    @Override  
     public int calculatePrice(){
-        return 1;
+        int price = 0;
+        for (int i = 0; i < fillings.length; i++) {
+            price += fillings[i].getFillingPrice();
+        }
+        price *= size; 
+        setPrice(price);
+        return price;
     }
 }

@@ -1,7 +1,7 @@
 package model;
 
 public class Order {
-    private String id;
+    private int id;
     private int totalPrice;
     private Product[] purchases;
     
@@ -12,13 +12,13 @@ public class Order {
         setTotalPrice(0);
     }
 
-    public Order(String id){
+    public Order(int id){
         setId(id);
         setPurchases(new Product[0]);
         setTotalPrice(0);
     }
     
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public void setTotalPrice(int totalPrice) {
@@ -28,7 +28,7 @@ public class Order {
         this.purchases = purchases;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -47,10 +47,16 @@ public class Order {
         }
         newPurchasesArr[purchases.length] = product;
         purchases = newPurchasesArr;
-    }
 
+        totalPrice += product.getPrice();
+    }
+    
     //TODO: kolla om denna behövs och om den är bra implementera
     public String toString(){
-        return "";
+        String purchasesString = "Order " + this.id; 
+        for (int i = 0; i < purchases.length; i++) {
+            
+        }
+        return purchasesString;
     }
 }
