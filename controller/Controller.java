@@ -18,6 +18,7 @@ public class Controller {
     private int totalPrice;
     private Order currentOrder;
     private PerUnitItem[] perUnitItems;
+    private int nbrOfOrders = 0; // for test purposes only
 
 
 
@@ -27,7 +28,6 @@ public class Controller {
     private String [] order1Simulation; // for test purposes only
     private String [] currentOrderArray; // for test purposes only
     private double costCurrentOrder = 0; // for test purposes only
-    private int nbrOfOrders = 0; // for test purposes only
 
     public Controller() {
         view = new MainFrame(1000, 500, this);
