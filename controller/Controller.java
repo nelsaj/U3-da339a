@@ -85,7 +85,7 @@ public class Controller {
                 addItemToOrder(view.getSelectionLeftPanel());
                 break;
 
-            case Cake:
+            case Cake: 
                 setToCakeMenu();
                 break;
 
@@ -127,6 +127,7 @@ public class Controller {
             costCurrentOrder = costCurrentOrder + 100; //for test purposes - replace with calculation of cost when how orders are handled is implemented in model
             view.populateRightPanel(currentOrderArray); //update left panel with new item - this takes a shortcut in updating the entire information in the panel not just adds to the end
             view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(costCurrentOrder)); //set the text to show cost of current order
+            
         }
 
     }
