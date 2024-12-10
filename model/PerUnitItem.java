@@ -8,8 +8,8 @@ public class PerUnitItem extends Product {
         setPrice(this.price);
     }
 
-    public PerUnitItem(int price){
-        super();
+    public PerUnitItem(int price, String name){
+        super(name);
         setPrice(price);
     }
 
@@ -29,6 +29,6 @@ public class PerUnitItem extends Product {
 
     @Override
     public String toString(){
-        return super.toString() + this.price; 
+        return super.toString() + " Price: " + this.price;
     }
 }
