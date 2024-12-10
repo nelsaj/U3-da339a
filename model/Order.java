@@ -53,10 +53,7 @@ public class Order {
     
     //TODO: kolla om denna behövs och om den är bra implementera
     public String toString(){
-        String purchasesString = "Order " + this.id; 
-        for (int i = 0; i < purchases.length; i++) {
-            
-        }
+        String purchasesString = "Order " + this.id + " Konstnad: " + this.totalPrice; 
         return purchasesString;
     }
 }

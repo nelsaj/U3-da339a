@@ -32,7 +32,7 @@ public class Controller {
     public Controller() {
         view = new MainFrame(1000, 500, this);
         previousOrders = new Order[0];
-        currentOrder = new Order(previousOrders.length);
+        currentOrder = new Order(previousOrders.length + 1);
         loadInitialCakes();
         loadInitialPerUnitItems();
 
@@ -142,9 +142,17 @@ public class Controller {
         System.out.println("Index selection left panel: " + selectionIndex); //for test purposes  - remove when not needed
 
         if ((selectionIndex != -1) && currentLeftMenu==ButtonType.OrderHistory){
-            costCurrentOrder = 100; //for test purposes - replace with calculation of cost when how orders are handled is implemented in model
-            view.populateRightPanel(order1Simulation); //update left panel with order details - this takes a shortcut in updating the entire information in the panel not just adds to the end
-            view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(costCurrentOrder)); //set the text to show cost of current order
+            String[] order = new String[previousOrders[selectionIndex].getPurchases().length + 1];
+            order[0] = "Order " + previousOrders[selectionIndex].getId();
+            
+            for (int i = 0; i < previousOrders[selectionIndex].getPurchases().length; i++) {
+                order[i + 1] = 
+                previousOrders[selectionIndex].getPurchases()[i].getName() + " " +
+                previousOrders[selectionIndex].getPurchases()[i].getPrice();
+            }
+
+            view.populateRightPanel(order); //update left panel with order details - this takes a shortcut in updating the entire information in the panel not just adds to the end
+            view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(previousOrders[selectionIndex].getTotalPrice())); //set the text to show cost of current order
         }
     }
 
@@ -218,7 +226,7 @@ public class Controller {
         } 
         newPreviousOrders[previousOrders.length] = currentOrder;
         previousOrders = newPreviousOrders;
-        currentOrder = new Order(previousOrders.length +1);
+        currentOrder = new Order(newPreviousOrders.length + 1);
         view.clearRightPanel(); //Removes information from right panel in GUI
         view.setTextCostLabelRightPanel("TOTAL COST: 0");
         view.enableAllButtons();
