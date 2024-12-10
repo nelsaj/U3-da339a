@@ -31,8 +31,8 @@ public class Controller {
 
     public Controller() {
         view = new MainFrame(1000, 500, this);
-        currentOrder = new Order();
         previousOrders = new Order[0];
+        currentOrder = new Order(previousOrders.length);
         loadInitialCakes();
         loadInitialPerUnitItems();
 
@@ -218,7 +218,7 @@ public class Controller {
         } 
         newPreviousOrders[previousOrders.length] = currentOrder;
         previousOrders = newPreviousOrders;
-        currentOrder = new Order();
+        currentOrder = new Order(previousOrders.length +1);
         view.clearRightPanel(); //Removes information from right panel in GUI
         view.setTextCostLabelRightPanel("TOTAL COST: 0");
         view.enableAllButtons();
