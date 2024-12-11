@@ -9,26 +9,31 @@ import java.util.Arrays;
 
 import model.*;
 
+/**
+ * Klass som hanterar logiken i applikationen same kommunikationen mellan model- och view-klasser.
+ * 
+ * Ser till att lämpliga metoder exekveras när användare trycker på knappar och andra element i 
+ * GUI:et.
+ * 
+ * @author Nelly Sajland, Elliot Collins
+ */
 public class Controller {
     private MainFrame view;
     private CustomCakeFrame newCakeType;
     private ButtonType currentLeftMenu = ButtonType.NoChoice;
     private Cake[] cakes;
     private Order[] previousOrders;
-    private int totalPrice;
     private Order currentOrder;
     private PerUnitItem[] perUnitItems;
-    private int nbrOfOrders = 0; // for test purposes only
 
-
-
-    private String [] cakeMenuString; // for test purposes only
-    private String [] perUnitItemMenuString; // for test purposes only
-    private String [] orderHistoryMenuString; // for test purposes only
-    private String [] order1Simulation; // for test purposes only
-    private String [] currentOrderArray; // for test purposes only
-    private double costCurrentOrder = 0; // for test purposes only
-
+    /**
+     * Konstruktor som skapar en ny instans av Controller.
+     * 
+     * Initierar en MainFrame (alltså gränssnittet), hårdkodade kakor och bakverk, och både nuvarande 
+     * och föregående beställningar. Dessutom diverse lämpliga enable och disable för knappar.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public Controller() {
         view = new MainFrame(1000, 500, this);
         previousOrders = new Order[0];
@@ -36,47 +41,29 @@ public class Controller {
         loadInitialCakes();
         loadInitialPerUnitItems();
 
-        loadStringTestValues(); //for test purposes - remove when not needed more
         view.enableAllButtons();
         view.disableAddMenuButton();
         view.disableViewSelectedOrderButton();
     }
-    
-    //This method is only used for test purposes - remove when no longer needed
-    private void loadStringTestValues() {
-        cakeMenuString = new String[10];
-        perUnitItemMenuString = new String[10];
-        orderHistoryMenuString = new String[10];
-        order1Simulation = new String[10];
-        currentOrderArray = new String[10];
-
-        // cakeMenuString[0] = "tårta0, storlek: 4 bitar, topping1, topping2, Pris0";
-        // cakeMenuString[1] = "tårta1, storlek: 6 bitar, topping1, topping3, Pris1";
-        // cakeMenuString[2] = "tårta2, storlek: 4 bitar, topping1, topping2, Pris2";
-        // cakeMenuString[3] = "tårta3, storlek: 12 bitar,topping1, topping3, Pris3";
-
-        // perUnitItemMenuString[0] = "vetebulle, Pris11";
-        // perUnitItemMenuString[1] = "pepparkaka, Pris22";
-
-        // orderHistoryMenuString[0] = "order1: kostnad:100";
-        // orderHistoryMenuString[1] = "order2: kostand:200";
-
-        // order1Simulation[0] = "Order 1";
-        // order1Simulation[1] = "tårta1 Pris1";
-        // order1Simulation[2] = "tårta2 Pris2";
-        // order1Simulation[3] = "vetebulle Pris11";
-
-    }
 
 
+    /**
+     * Lägger till 3 fördefinerade tårtor.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     private void loadInitialCakes(){
         this.cakes = new Cake[3];
         
         cakes[0] = new Cake(new Filling[]{Filling.Choclate, Filling.Coconut}, 1, "CocoLoco");
         cakes[1] = new Cake(new Filling[]{Filling.Strawberry, Filling.MixedBerries}, 2, "Berry good");
         cakes[2] = new Cake(new Filling[]{Filling.Unknown, Filling.Unknown}, 3, "DONT TRY THIS PLEASE HELP");
-        
     }
+    /**
+     * Lägger till 2 fördefinerade bakverk.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     private void loadInitialPerUnitItems() {
         this.perUnitItems = new PerUnitItem[2];
 
@@ -86,6 +73,13 @@ public class Controller {
     
     
     //This method is called by class MinFrame when a button in teh GUI is pressed
+    /**
+     * Anropa metoder beroende på vilken knapp som klickades.
+     * 
+     * @param button typen av knapp
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void buttonPressed(ButtonType button){
 
         switch (button) {
@@ -119,9 +113,14 @@ public class Controller {
         }
     }
     
+    /**
+     * Lägger till en tårta/bakverk till beställningen.
+     * 
+     * @param selectionIndex tillhörande index i listan
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void addItemToOrder(int selectionIndex) {
-        System.out.println("Index selection left panel: " + selectionIndex); //for test purposes  - remove when not needed
-
         if (selectionIndex != -1){ // if something is selected in the left menu list
             switch (currentLeftMenu) { //This might need to change depending on architecture
                 case Cake:
@@ -131,13 +130,19 @@ public class Controller {
                     currentOrder.addProduct(perUnitItems[selectionIndex]);
                     break;
             }
-            nbrOfOrders++; //for test purposes - need to be removed or changed when model for handling orders is implemented            
             
             setCurrentOrderRightPanel();            
         }
 
     }
 
+    /**
+     * Visar information om en selekterad beställning.
+     * 
+     * @param selectionIndex tillhörande index i listan
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void viewSelectedOrder(int selectionIndex){
         System.out.println("Index selection left panel: " + selectionIndex); //for test purposes  - remove when not needed
 
@@ -157,6 +162,11 @@ public class Controller {
     }
 
 
+    /**
+     * Visar tårta menyn och ändrar vänsta och högra panelen enlighetsamt.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void setToCakeMenu() {
         currentLeftMenu = ButtonType.Cake;
         String[] cakeMenuString = new String[cakes.length];
@@ -165,7 +175,6 @@ public class Controller {
             cakeMenuString[i] = cakes[i].toString();    
         }
         view.populateLeftPanel(cakeMenuString);
-        System.out.println(Arrays.toString(currentOrderArray));
         
         setCurrentOrderRightPanel();
 
@@ -175,6 +184,11 @@ public class Controller {
     }
 
 
+    /**
+     * Visar bakverk menyn och ändrar vänsta och högra panelen enlighetsamt.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void setToPerUnitItemMenu() {
         currentLeftMenu = ButtonType.PerUnitItem;
         String[] perUnitItemMenuString = new String[perUnitItems.length];
@@ -189,6 +203,11 @@ public class Controller {
         view.disableViewSelectedOrderButton();
     }
 
+    /**
+     * Ändrar högra panelen till att visa nuvarande order, återanvänds för vissa vyer.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     private void setCurrentOrderRightPanel () {
         String[] orderPurchasesStrings = new String[currentOrder.getPurchases().length];
         for (int i = 0; i < currentOrder.getPurchases().length; i++) {
@@ -198,6 +217,11 @@ public class Controller {
         view.setTextCostLabelRightPanel("Total cost of order: " + String.valueOf(currentOrder.getTotalPrice())); //set the text to show cost of current order
     }
 
+    /**
+     * Visar beställningshistorik menyn och ändrar vänsta och högra panelen enlighetsamt.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void setToOrderHistoryMenu() {
         currentLeftMenu = ButtonType.OrderHistory;
         view.clearRightPanel();
@@ -212,13 +236,18 @@ public class Controller {
         view.disableOrderButton();
     }
 
-
+    //Används inte
     public void addNewCake() {
         newCakeType = new CustomCakeFrame(this);
         //For grade VG: Add more code to save the new cake type and update menu,
         view.enableAllButtons();
     }
 
+    /**
+     * Gör en beställning, lägger till den beställningen i historik arrayen och tömmer nuvarande.
+     * 
+     * @author Nelly Sajland, Elliot Collins
+     */
     public void placeOrder() {
         Order[] newPreviousOrders = new Order[previousOrders.length + 1];
         for (int i = 0; i < previousOrders.length; i++) {
