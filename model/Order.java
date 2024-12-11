@@ -5,7 +5,6 @@ public class Order {
     private int totalPrice;
     private Product[] purchases;
     
-    //Kolla om denna behövs
     public Order(){
         setId(this.id);
         setPurchases(new Product[0]);
@@ -51,7 +50,6 @@ public class Order {
         totalPrice += product.getPrice();
     }
     
-    //TODO: kolla om denna behövs och om den är bra implementera
     public String toString(){
         String purchasesString = "Order " + this.id + " Konstnad: " + this.totalPrice; 
         return purchasesString;
