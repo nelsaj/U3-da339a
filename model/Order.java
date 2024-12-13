@@ -15,6 +15,8 @@ public class Order {
     /**
      * Konstruktor som initierar med defualtvärden. 
      * ID 0, totalpris 0, inköp tom array.
+     * 
+     * @author Nelly Sajland & Elliot Collins
      */
     public Order(){
         setId(this.id);
@@ -26,6 +28,7 @@ public class Order {
      * Konstruktor som skapar en beställning med ett specifikt ID, annars samma defaultvärden. 
      * 
      * @param id id:et för beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public Order(int id){
         setId(id);
@@ -37,6 +40,7 @@ public class Order {
      * Sätter id:et för beställningen.
      * 
      * @param id det nya id:et för beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public void setId(int id) {
         this.id = id;
@@ -46,6 +50,7 @@ public class Order {
      * Sätter totalpriset för beställningen.
      * 
      * @param totalPrice det nya priset för beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
@@ -55,6 +60,7 @@ public class Order {
      * Sätter inköp i beställningen.
      * 
      * @param purchases en array av produkter som ingår i beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public void setPurchases(Product[] purchases) {
         this.purchases = purchases;
@@ -64,6 +70,7 @@ public class Order {
      * Hämtar id:et för ordern.
      * 
      * @return id:et för ordern
+     * @author Nelly Sajland & Elliot Collins
      */
     public int getId() {
         return id;
@@ -73,6 +80,7 @@ public class Order {
      * Hämtar inköp i beställningen.
      * 
      * @return en array av produkter som ingår i beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public Product[] getPurchases() {
         return purchases;
@@ -82,6 +90,7 @@ public class Order {
      * Hämtar priset för beställningen.
      * 
      * @return priset för beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public int getTotalPrice() {
         return totalPrice;
@@ -92,6 +101,7 @@ public class Order {
      * Dessutom utökar storleken av purchases så att produkten får plats.
      * 
      * @param product den produkt som ska läggas till i ordern
+     * @author Nelly Sajland & Elliot Collins
      */
     public void addProduct(Product product){
         Product[] newPurchasesArr = new Product[purchases.length + 1];
@@ -108,6 +118,7 @@ public class Order {
      * Returnerar en text av beställningen.
      *
      * @return en sträng som beskriver beställningen
+     * @author Nelly Sajland & Elliot Collins
      */
     public String toString(){
         String purchasesString = "Order " + this.id + " Konstnad: " + this.totalPrice; 
