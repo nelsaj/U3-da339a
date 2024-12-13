@@ -29,16 +29,20 @@ public class PerUnitItem extends Product {
         setPrice(price);
     }
 
+    /**
+     * Denna metod ska implementera det som behövs för att kunna retunera rätt pris 
+     * för producten.
+     * @return Priset av varje PerUnitItem 
+     */
     @Override
     public int calculatePrice() {
         return this.getPrice();
     }
 
     /**
-     * Returnerar en strängrepresentation av PerUnitItem-objektet.
-     * Delegerar till basklassens toString-metod.
+     * Skapar en sträng av perUnitItem för att sen kunna visa i GUI.
      *
-     * @return en strängrepresentation av PerUnitItem.
+     * @return en sträng av alla attribute av PerUnitItem.
      */
     @Override
     public String toString() {

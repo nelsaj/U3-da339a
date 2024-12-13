@@ -1,6 +1,6 @@
 /**
- * Klassen Cake är en class som ärver från Classen Product men med storlek och fyllningar som enskilda attribute.
- * Det finns klass spesifika metoder för att beräkna priset på tårtan och hämta dess data.
+ * Klassen Cake ärver från klassen Produkt och är en representation av tårta 
+ * man ska kunna köpa.
  *
  * @author Elliot Collins
  * @author Nelly Sajland
@@ -12,7 +12,7 @@ public class Cake extends Product {
     private int size;
 
     /**
-     * konstruktorn som initialiserar ett Cake-objekt med standardvärden.
+     * konstruktorn som sätter default värden.
      * @author Elliot Collins
      * @author Nelly Sajland
      */
@@ -23,7 +23,7 @@ public class Cake extends Product {
     }
 
     /**
-     * Konstruktor för att initialisera ett Cake-objekt med specifika fyllningar,storlek och namn.
+     * Konstruktör som tar emot input och sätter värden för de olika attribut.
      *
      * @param fillings en array av Fillings
      * @param size tårtans storlek
@@ -40,7 +40,7 @@ public class Cake extends Product {
     }
 
     /**
-     * Hämtar tårtans storlek.
+     * Getter för tårtans storlek.
      * @return tårtans storlek
      * 
      * @author Elliot Collins
@@ -51,7 +51,7 @@ public class Cake extends Product {
     }
 
     /**
-     * Hämtar tårtans fyllningar.
+     * Getter för tårtans fyllningar.
      * @return en array av Fillings
      * 
      * @author Elliot Collins
@@ -62,7 +62,7 @@ public class Cake extends Product {
     }
 
     /**
-     * Sätter tårtans fyllningar.
+     * Setter för tårtans fyllningar.
      * @param fillings en array av Fillings
     
      * @author Elliot Collins
@@ -73,7 +73,7 @@ public class Cake extends Product {
     }
 
     /**
-     * Sätter tårtans storlek.
+     * Setter för tårtans storlek.
      * @param size storleken att sätta för tårtan
      * 
      * @author Elliot Collins
@@ -84,8 +84,8 @@ public class Cake extends Product {
     }
 
     /**
-     * Returnerar en text av cakes olika attribute som ska användas för listan av orders.
-     * @return en sträng som beskriver en cake
+     * Returnerar en sträng av cakes olika attribute som ska användas sednan för listan av orders.
+     * @return En sträng som beskriver en cake.
      * 
      * @author Elliot Collins
      * @author Nelly Sajland
@@ -101,7 +101,7 @@ public class Cake extends Product {
 
     /**
      * Beräknar priset på tårtan baserat på dess fyllningar och storlek.
-     * @return det beräknade priset på tårtan
+     * @return Det beräknade priset på tårtan.
      * 
      * @author Elliot Collins
      * @author Nelly Sajland
