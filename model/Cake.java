@@ -13,6 +13,8 @@ public class Cake extends Product {
 
     /**
      * konstruktorn som initialiserar ett Cake-objekt med standardvärden.
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public Cake() {
         super(); 
@@ -26,6 +28,9 @@ public class Cake extends Product {
      * @param fillings en array av Fillings
      * @param size tårtans storlek
      * @param name tårtans namn
+     *
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public Cake(Filling[] fillings, int size, String name) {
         super.setName(name);
@@ -36,8 +41,10 @@ public class Cake extends Product {
 
     /**
      * Hämtar tårtans storlek.
-     *
      * @return tårtans storlek
+     * 
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public int getSize() {
         return size;
@@ -45,8 +52,10 @@ public class Cake extends Product {
 
     /**
      * Hämtar tårtans fyllningar.
-     *
      * @return en array av Fillings
+     * 
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public Filling[] getFillings() {
         return fillings;
@@ -54,8 +63,10 @@ public class Cake extends Product {
 
     /**
      * Sätter tårtans fyllningar.
-     *
      * @param fillings en array av Fillings
+    
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public void setFillings(Filling[] fillings) {
         this.fillings = fillings;
@@ -63,8 +74,10 @@ public class Cake extends Product {
 
     /**
      * Sätter tårtans storlek.
-     *
      * @param size storleken att sätta för tårtan
+     * 
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public void setSize(int size) {
         this.size = size;
@@ -72,8 +85,10 @@ public class Cake extends Product {
 
     /**
      * Returnerar en text av cakes olika attribute som ska användas för listan av orders.
-     *
      * @return en sträng som beskriver en cake
+     * 
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     @Override
     public String toString() {
@@ -86,8 +101,10 @@ public class Cake extends Product {
 
     /**
      * Beräknar priset på tårtan baserat på dess fyllningar och storlek.
-     *
      * @return det beräknade priset på tårtan
+     * 
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     @Override  
     public int calculatePrice() {
