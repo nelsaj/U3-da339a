@@ -10,10 +10,10 @@ public class PerUnitItem extends Product {
         super(name);
         setPrice(price);
     }
-    //TODO: fixa denna 
+
     @Override
-    public int calculatePrice(){
-        return 0;
+    public int calculatePrice() {
+        return this.getPrice();
     }
 
     @Override

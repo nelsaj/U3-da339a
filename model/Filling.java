@@ -11,9 +11,13 @@ public enum Filling {
     /**
      * Enum konstruktör som initialiserar pris attributet för en viss Enum literal.
      * @param price
+     * @author Nelly Sajland & Elliot Collins
      */
     Filling(int price){
         this.price = price;
     }
+    /**
+     * En getter som returnerar priset av en fyllning.
+     */
     public int getFillingPrice() {return price;}
 }
