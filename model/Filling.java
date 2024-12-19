@@ -19,6 +19,8 @@ public enum Filling {
     }
     /**
      * En getter som returnerar priset av en fyllning.
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public int getFillingPrice() {return price;}
 }
