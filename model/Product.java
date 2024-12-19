@@ -38,6 +38,8 @@ public abstract class Product {
     /**
      * Skapar en sträng av alla attribut för en produkt
      * @return En sträng av alla attribut för en produkt
+     * 
+     * @author Nelly Sajland, Elliot Collins
      */
     public String toString(){
         return name + ", Price: " + price;
@@ -45,6 +47,8 @@ public abstract class Product {
      /**
      * Setter för price attributet.
      * @param price 
+     * 
+     * @author Nelly Sajland, Elliot Collins
      */
     public void setPrice(int price) {
         this.price = price;
@@ -52,6 +56,8 @@ public abstract class Product {
     /**
      * Getter för price attributet.
      * @return price attributet.
+     * 
+     * @author Nelly Sajland, Elliot Collins
      */
     public int getPrice() {
         return price;
@@ -60,6 +66,8 @@ public abstract class Product {
      * En abstrakt metod för att kalkylera priset av en produkt som
      * är beronde på olika variabler så varsin klass som ärver Produkt ska implementera.
      * @return priset som har kalkylerats. 
+     * 
+     * @author Nelly Sajland, Elliot Collins
      */
     abstract int calculatePrice();
 

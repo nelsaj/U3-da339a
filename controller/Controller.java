@@ -249,6 +249,7 @@ public class Controller {
      * @author Nelly Sajland, Elliot Collins
      */
     public void placeOrder() {
+        if(currentOrder.getPurchases().length < 1) return;
         Order[] newPreviousOrders = new Order[previousOrders.length + 1];
         for (int i = 0; i < previousOrders.length; i++) {
             newPreviousOrders[i] = previousOrders[i];
