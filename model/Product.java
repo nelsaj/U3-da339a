@@ -10,12 +10,16 @@ public abstract class Product {
     private int price;
     /**
      * Konstruktör som sätter default värden för name attributet.
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public Product(){
         this.setName(this.name);
     }
      /**
-     * Konstruktör som sätter input parametervärdet för name attributet.
+     * Konstruktör som sätter input parametervärdet för name attributet
+     * @author Elliot Collins
+     * @author Nelly Sajland.
      */
     public Product(String name){
         this.setName(name);
@@ -23,6 +27,8 @@ public abstract class Product {
      /**
      * Getter för name attributet
      * @return namnet på produkten.
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public String getName() {
         return name;
@@ -30,6 +36,8 @@ public abstract class Product {
      /**
      * Setter för name attributet.
      * @param name 
+     * @author Elliot Collins
+     * @author Nelly Sajland
      */
     public void setName(String name) {
         this.name = name;
@@ -70,6 +78,5 @@ public abstract class Product {
      * @author Nelly Sajland, Elliot Collins
      */
     abstract int calculatePrice();
-
 
 }
